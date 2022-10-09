@@ -1,13 +1,18 @@
 import { app } from '$data/providers/firebase/config';
+import { ENV } from '$lib/config';
 import {
 	createUserWithEmailAndPassword,
 	getAuth,
 	GoogleAuthProvider,
 	signInWithEmailAndPassword,
-	signInWithPopup
+	signInWithPopup,
+	connectAuthEmulator
 } from 'firebase/auth';
 
 export const auth = getAuth(app);
+if (ENV === 'development') {
+	connectAuthEmulator(auth, 'http://localhost:9099');
+}
 
 class Auth {
 	async login(email: string, password: string) {

@@ -1,4 +1,5 @@
 import { app } from '$data/providers/firebase/config';
+import { ENV } from '$lib/config';
 
 import {
 	getFirestore,
@@ -10,10 +11,14 @@ import {
 	addDoc,
 	deleteDoc,
 	DocumentReference,
-	type DocumentData
+	type DocumentData,
+	connectFirestoreEmulator
 } from 'firebase/firestore';
 
 export const firestore = getFirestore(app);
+if (ENV == 'development') {
+	connectFirestoreEmulator(firestore, 'localhost', 8080);
+}
 
 class DB {
 	db;
