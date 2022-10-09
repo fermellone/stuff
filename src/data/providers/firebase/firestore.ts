@@ -27,7 +27,6 @@ class DB {
 	}
 
 	async get(id: string) {
-		console.log(this.collection.path);
 		const docRef = doc(this.db, this.collectionName, id);
 		const docSnap = await getDoc(docRef);
 		if (docSnap.exists()) {

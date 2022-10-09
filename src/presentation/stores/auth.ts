@@ -10,7 +10,6 @@ export const userState: Writable<User | null> = writable(null);
 export async function loginWithGoogle() {
 	const user = await authService.loginWithGoogle();
 	localStorage.setItem('loggedIn', 'true');
-	console.log(user);
 	userState.set(user);
 	goto('/');
 }

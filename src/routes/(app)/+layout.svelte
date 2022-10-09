@@ -1,7 +1,7 @@
 <script lang="ts">
 	import '../../app.css';
-	import { logout } from '$presentation/stores/auth';
+	import NavBar from '$presentation/components/layout/NavBar.svelte';
 </script>
 
-<button on:click={logout}>logout</button>
+<NavBar />
 <slot />
