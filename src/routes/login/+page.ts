@@ -1,11 +1,12 @@
 import { browser } from '$app/environment';
 import { goto } from '$app/navigation';
+import { checkIfLoggedIn } from '$presentation/stores/auth';
 
 export function load() {
 	if (browser) {
-		const loggedIn = !!localStorage?.getItem('loggedIn');
+		const isLoggedIn = checkIfLoggedIn();
 
-		if (loggedIn) {
+		if (isLoggedIn) {
 			goto('/');
 		}
 	}

@@ -9,22 +9,25 @@ export const userState: Writable<User | null> = writable(null);
 
 export async function loginWithGoogle() {
 	const user = await authService.loginWithGoogle();
-	localStorage.setItem('loggedIn', 'true');
+	localStorage.setItem('user', JSON.stringify(user));
 	userState.set(user);
 	goto('/');
 }
 
 export async function logout() {
 	await authService.logout();
-	localStorage.removeItem('loggedIn');
+	localStorage.removeItem('user');
 	userState.set(null);
 	goto('/login');
 }
 
 export function fetchUserState() {
-	const loggedIn = localStorage.getItem('loggedIn');
-	if (loggedIn) {
-		console.log(authService.userData);
-		userState.set(authService.userData);
+	const user = localStorage.getItem('user');
+	if (user) {
+		userState.set(JSON.parse(user));
 	}
+}
+
+export function checkIfLoggedIn() {
+	return !!localStorage.getItem('user');
 }
