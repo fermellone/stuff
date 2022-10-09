@@ -13,19 +13,6 @@ class AuthServiceImplementation implements AuthService {
 	async logout() {
 		await auth.logout();
 	}
-
-	get userData() {
-		console.log('1', auth.userData);
-		if (!auth.userData) {
-			return null;
-		}
-		return {
-			id: auth.userData.uid,
-			email: auth.userData.email,
-			name: auth.userData.displayName,
-			photo: auth.userData.photoURL
-		};
-	}
 }
 
 export default AuthServiceImplementation;

@@ -34,10 +34,6 @@ class Auth {
 	async logout() {
 		await auth.signOut();
 	}
-
-	get userData() {
-		return auth.currentUser;
-	}
 }
 
 export default Auth;

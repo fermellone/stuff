@@ -17,7 +17,6 @@ const initialState: HomeState = {
 	fetch: async () => {
 		const assets = await assetsService.getAll();
 		homeState.update((state) => ({ ...state, assets }));
-		console.log(assets);
 	},
 	addAsset: async (asset) => {
 		const id = await assetsService.create<AssetForm>(asset);
