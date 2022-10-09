@@ -1,5 +1,5 @@
 import { goto } from '$app/navigation';
-import type { User } from '$domain/models/User';
+import type { User } from '$domain/models/user';
 import AuthServiceImplementation from '$domain/services-implementation/auth';
 import { writable, type Writable } from 'svelte/store';
 
@@ -19,4 +19,12 @@ export async function logout() {
 	localStorage.removeItem('loggedIn');
 	userState.set(null);
 	goto('/login');
+}
+
+export function fetchUserState() {
+	const loggedIn = localStorage.getItem('loggedIn');
+	if (loggedIn) {
+		console.log(authService.userData);
+		userState.set(authService.userData);
+	}
 }

@@ -36,23 +36,23 @@ class DB {
 		}
 	}
 
-	async getAll() {
+	async getAll<Type>(): Promise<Type[]> {
 		const querySnapshot = await getDocs(this.collection);
-		const docs: DocumentData[] = [];
+		const docs: Type[] = [];
 		querySnapshot.forEach((doc) => {
-			docs.push(doc.data());
+			docs.push({ ...doc.data(), id: doc.id } as Type);
 		});
 		return docs;
 	}
 
-	async create(data: any) {
-		const docRef: DocumentReference = await addDoc(this.collection, data);
+	async create<Type>(data: Type): Promise<string> {
+		const docRef: DocumentReference = await addDoc(this.collection, data as DocumentData);
 		return docRef.id;
 	}
 
-	async update(id: string, data: any) {
+	async update<Type>(id: string, data: Type) {
 		const docRef = doc(this.db, this.collectionName, id);
-		await updateDoc(docRef, data);
+		await updateDoc(docRef, data as DocumentData);
 	}
 
 	async delete(id: string) {
