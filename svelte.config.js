@@ -12,7 +12,8 @@ const config = {
 		alias: {
 			$presentation: './src/presentation/*',
 			$domain: './src/domain',
-			$data: './src/data'
+			$data: './src/data',
+			$lib: './src/lib'
 		}
 	}
 };
